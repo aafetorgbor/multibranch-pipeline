@@ -1,10 +1,6 @@
 pipeline {
 
-    agent {
-        node {
-            label 'master'
-        }
-    }
+    agent any
 
     options {
         buildDiscarder logRotator( 
@@ -26,11 +22,10 @@ pipeline {
 
         stage('Code Checkout') {
             steps {
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/main']], 
-                    userRemoteConfigs: [[url: 'https://github.com/spring-projects/spring-petclinic.git']]
-                ])
+                checkout([$class: 'GitSCM', 
+                branches: [[name: '*/main']],
+                extensions: [], 
+                userRemoteConfigs: [[url: 'https://github.com/aafetorgbor/multibranch-pipeline.git']]])
             }
         }
 
