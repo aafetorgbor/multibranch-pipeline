@@ -1,6 +1,6 @@
 # multibranch-pipeline-demo
 
-Feature branch RdM
+Develop branch RdM
 
 
 
