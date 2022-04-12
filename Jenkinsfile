@@ -48,7 +48,7 @@ pipeline {
                 """
 
                 sh """
-                echo "Deploying Code"
+                echo "Deploying Code.."
                 """
             }
         }
