@@ -36,7 +36,7 @@ pipeline {
             }
             steps {
                 sh """
-                echo "This only run when we are on the develop branch"
+                echo "This only run when we are on the develop branch."
                 """
             }
         }
