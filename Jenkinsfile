@@ -22,34 +22,28 @@ pipeline {
             }
         }
 
-        stage(' Unit Testing') {
-            steps {
-                sh """
-                echo "Running Unit Tests"
-                """
-            }
-        }
-
-        stage('Code Analysis') {
-            steps {
-                sh """
-                echo "Running Code Analysis"
-                """
-            }
-        }
-
-        stage('Build Deploy Code') {
-            when {
+        
+        stage(' Build') {
+             when {
                 branch 'develop'
             }
             steps {
                 sh """
-                echo "Building Artifact"
+                echo "This only run when we are on the develop branch."
+                """
+            }
+        }
+
+       
+        stage('For PR') {
+            when {
+                branch 'PR-*'
+            }
+            steps {
+                sh """
+                echo "This stage only run for PR"
                 """
 
-                sh """
-                echo "Deploying Code"
-                """
             }
         }
 
