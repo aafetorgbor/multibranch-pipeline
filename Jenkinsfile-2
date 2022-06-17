@@ -12,7 +12,19 @@ pipeline {
                 """
             }
         }
-
+     
+     
+      stage(' Build') {
+             when {
+                branch 'main'
+            }
+            steps {
+                sh """
+                echo "This only run when we are on the develop branch"
+                pytest -v
+                """
+            }
+        }
         
         
         stage(' Build') {
@@ -34,7 +46,7 @@ pipeline {
             steps {
                 sh """
                 echo "This stage only run for PR"
-                pytest3 -v
+                pytest -v
                 """
 
             }
