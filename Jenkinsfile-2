@@ -16,6 +16,18 @@ pipeline {
             }
         }
         
+        
+         stage('Test') {
+             when {
+                branch 'dev'
+            }
+            steps {
+                sh """
+                echo "This only run when we are on the DEV branch"
+                pytest -v
+                """
+            }
+        }
     
        
          stage('For PR') {
