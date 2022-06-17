@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        
+  /*      
         stage(' Build') {
              when {
                 branch 'develop'
@@ -33,7 +33,7 @@ pipeline {
                 """
             }
         }
-
+  */
        
         stage('For PR') {
             when {
