@@ -26,18 +26,7 @@ pipeline {
             }
         }
         
-     /*   
-         stage(' Build') {
-             when {
-                branch 'develop'
-            }
-            steps {
-                sh """
-                echo "This only run when we are on the develop branch"
-                """
-            }
-        }
-    */
+    
        
          stage('For PR') {
             when {
