@@ -4,7 +4,7 @@ pipeline {
     
     
       stages{
-        stage('Test') {
+        stage('Test-main') {
              when {
                 branch 'main'
             }
@@ -17,7 +17,7 @@ pipeline {
         }
         
         
-         stage('Test') {
+         stage('Test-dev') {
              when {
                 branch 'dev'
             }
@@ -38,10 +38,10 @@ pipeline {
                 sh """
                 echo "This stage only run for PR"
                 pytest -v
-                """
-
+                  """
             }
         }
+
 
     }   
 }
