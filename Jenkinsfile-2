@@ -14,7 +14,7 @@ pipeline {
         }
      
      
-      stage(' Build') {
+        stage(' Build') {
              when {
                 branch 'main'
             }
@@ -27,7 +27,7 @@ pipeline {
         }
         
         
-        stage(' Build') {
+         stage(' Build') {
              when {
                 branch 'develop'
             }
@@ -39,7 +39,7 @@ pipeline {
         }
 
        
-        stage('For PR') {
+         stage('For PR') {
             when {
                 branch 'PR-*'
             }
