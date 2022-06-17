@@ -13,14 +13,6 @@ pipeline {
             }
         }
 
-        stage('Code Checkout') {
-            steps {
-                checkout([$class: 'GitSCM', 
-                branches: [[name: '*/main']],
-                extensions: [], 
-                userRemoteConfigs: [[url: 'https://github.com/aafetorgbor/multibranch-pipeline.git']]])
-            }
-        }
 
         
         stage(' Build') {
@@ -42,7 +34,7 @@ pipeline {
             steps {
                 sh """
                 echo "This stage only run for PR"
-                pytest3 -v
+                pytest -v
                 """
 
             }
