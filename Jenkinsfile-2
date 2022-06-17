@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sh """
                 echo "This stage only run for PR"
-                python3 -v
+                pytest3 -v
                 """
 
             }
