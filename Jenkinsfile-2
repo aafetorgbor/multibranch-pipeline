@@ -12,26 +12,30 @@ pipeline {
                 """
             }
         }
-
-        stage('Code Checkout') {
+     
+     
+        stage('Test') {
+             when {
+                branch 'main'
+            }
             steps {
-                checkout([$class: 'GitSCM', 
-                branches: [[name: '*/main']],
-                extensions: [], 
-                userRemoteConfigs: [[url: 'https://github.com/aafetorgbor/multibranch-pipeline.git']]])
+                sh """
+                echo "This only run when we are on the develop branch"
+                pytest -v
+                """
             }
         }
-
-  
+        
+    
        
-        stage('For PR') {
+         stage('For PR') {
             when {
                 branch 'PR-*'
             }
             steps {
                 sh """
                 echo "This stage only run for PR"
-                pytest3 -v
+                pytest -v
                 """
 
             }
