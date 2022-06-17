@@ -4,40 +4,37 @@ pipeline {
     
     
       stages{
-        stage('Test-main') {
-             when {
-                branch 'main'
-            }
+        stage('TEST') {
+            
             steps {
                 sh """
-                echo "This only run when we are on the MAIN branch"
+                echo "Runing pytest| unit-test"
                 pytest -v
                 """
             }
         }
         
         
-         stage('Test-dev') {
-             when {
-                branch 'dev'
-            }
+         stage('BUILD') {
+            
             steps {
                 sh """
-                echo "This only run when we are on the DEV branch"
-                pytest -v
+                echo "Building ..........."
+                
                 """
             }
         }
     
        
-         stage('For PR') {
+         stage('DEPLOY') {
             when {
                 branch 'PR-*'
             }
             steps {
                 sh """
+                echo "Deploying ........."
                 echo "This stage only run for PR"
-                pytest -v
+               
                   """
             }
         }
