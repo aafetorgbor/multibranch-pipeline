@@ -27,9 +27,7 @@ pipeline {
     
        
          stage('DEPLOY') {
-            when {
-                branch 'PR-*'
-            }
+           
             steps {
                 sh """
                 echo "Deploying ........."
