@@ -4,38 +4,32 @@ pipeline {
     
     
       stages{
-        stage('Hello') {
-             
+        stage(' RUN TEST') {  
             steps {
                 sh """
-                echo "Hello"
+                echo "Running pytest test"
+                pytest -v
                 
                 """
             }
         }
         
         
-         stage('Test-dev') {
-             when {
-                branch 'dev'
-            }
+         stage('BUILD IMAGE') {
             steps {
                 sh """
-                echo "This only run when we are on the DEV branch"
-                pytest -v
+                echo " Building Docker Image"
+                
                 """
             }
         }
     
        
-         stage('For PR') {
-            when {
-                branch 'PR-*'
-            }
+         stage(' DEPLOY ') {
             steps {
                 sh """
-                echo "This stage only run for PR"
-                pytest -v
+                echo " Deploying to Code Engine"
+            
                   """
             }
         }
