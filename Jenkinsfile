@@ -5,11 +5,6 @@ pipeline {
     stages{
 	    
         stage(' RUN TEST') {  
-		when {
-                anyOf { 
-			branch 'main'; branch 'qa'; branch 'dev'
-		}
-            }
             steps {
                 sh """
                 echo "Running pytest test"
