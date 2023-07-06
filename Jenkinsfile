@@ -16,6 +16,11 @@ pipeline {
         
         
          stage('BUILD IMAGE') {
+             when {
+               branch 'dev';
+               branch 'qa';
+               branch 'main'
+           }
             steps {
                 sh """
                 echo " Building Docker Image"
@@ -26,6 +31,11 @@ pipeline {
     
        
          stage(' DEPLOY ') {
+             when {
+               branch 'dev';
+               branch 'qa';
+               branch 'main'
+           }
             steps {
                 sh """
                 echo " Deploying to Code Engine"
