@@ -3,12 +3,13 @@ pipeline {
     agent any
 
     stages{
-	    when {
+	    
+        stage(' RUN TEST') {  
+		when {
                 anyOf { 
 			branch 'main'; branch 'qa'; branch 'dev'; branch 'PR-*'
 		}
             }
-        stage(' RUN TEST') {  
             steps {
                 sh """
                 echo "Running pytest test"
