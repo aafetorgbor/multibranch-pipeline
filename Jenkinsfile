@@ -22,11 +22,11 @@ pipeline {
         
         
          stage('BUILD IMAGE') {
-             when {
-               branch 'dev';
-               branch 'qa';
-               branch 'main'
-           }
+              when {
+                anyOf { 
+			branch 'main'; branch 'qa'; branch 'dev' 
+		}
+            }
             steps {
                 sh """
                 echo " Building Docker Image"
