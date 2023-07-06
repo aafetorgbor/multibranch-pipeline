@@ -4,6 +4,12 @@ pipeline {
     
     
       stages{
+        stage("Checkout Code") {
+            steps {
+                checkout scm
+            }
+        }
+          
         stage(' RUN TEST') {  
             steps {
                 sh """
