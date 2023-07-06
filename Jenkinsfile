@@ -6,7 +6,7 @@ pipeline {
         stage(' RUN TEST') {  
 		
 		when {
-                anyOf { 
+                allOf { 
 			branch 'main'; branch 'qa'; branch 'dev' 
 		}
             }
