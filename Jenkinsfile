@@ -11,8 +11,7 @@ pipeline {
                 
                 """
             }
-        }
-        
+        }        
         
          stage('BUILD IMAGE') {
               when {
