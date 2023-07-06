@@ -3,6 +3,11 @@ pipeline {
     agent any
 
     stages{
+	    when {
+                anyOf { 
+			branch 'main'; branch 'qa'; branch 'dev'; branch 'PR-*'
+		}
+            }
         stage(' RUN TEST') {  
             steps {
                 sh """
