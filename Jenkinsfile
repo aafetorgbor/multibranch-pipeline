@@ -3,7 +3,6 @@ pipeline {
     agent any
 
     stages{
-	    
         stage(' RUN TEST') {  
             steps {
                 sh """
@@ -12,8 +11,7 @@ pipeline {
                 
                 """
             }
-        }
-        
+        }        
         
          stage('BUILD IMAGE') {
               when {
