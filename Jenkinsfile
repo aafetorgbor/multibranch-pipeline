@@ -35,8 +35,9 @@ pipeline {
                 sh """
 		
                 echo " Building Docker Image"
+		
                 """
-		echo "Hello ${params.PROJECT-dev}"
+		
             }
         }
     
