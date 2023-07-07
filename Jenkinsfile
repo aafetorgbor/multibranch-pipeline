@@ -36,7 +36,7 @@ pipeline {
 		
                 echo " Building Docker Image"
 
-  		echo "Hello ${params.PROJECT-dev}"
+  		
                 
                 """
             }
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sh """
                 echo " Deploying to Code Engine"
-                echo "Hello ${params.PROJECT-dev}"
+                
                   """
             }
         }
