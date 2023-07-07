@@ -2,12 +2,18 @@ pipeline {
 
     agent any
 
-   environment{
-        PROJECT = 'impe-dev'
-        ENVIRONMENT = 'dev'
-        IMAGE_NAME = 'impe-dev-api'
+  parameters {
+        string(name: 'PROJECT-dev', defaultValue: 'impe-dev', description: 'dev?')
+        string(name: 'PROJECT-qa', defaultValue: 'impe-qa', description: 'qa?')
+
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
     }
 
+    environment{
+        PROJECT = ''
+        ENVIRONMENT = ''
+        IMAGE_NAME = 'impe-dev-api'
+    }
     stages{
         stage(' RUN TEST') {  
             steps {
@@ -28,6 +34,9 @@ pipeline {
             steps {
                 sh """
                 echo " Building Docker Image"
+
+  		echo "Hello ${params.PROJECT-dev}"
+                echo "Hello ${params.PROJECT-qa}"
                 
                 """
             }
