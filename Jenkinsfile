@@ -6,7 +6,7 @@ pipeline {
         string(name: 'PROJECT-dev', defaultValue: 'impe-dev', description: 'dev?')
         string(name: 'PROJECT-qa', defaultValue: 'impe-qa', description: 'qa?')
 
-        booleanParam(name: 'TOGGLE', defaultValue: false, description: 'Toggle this value')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
     }
 
     environment{
@@ -36,7 +36,7 @@ pipeline {
 		
                 echo " Building Docker Image"
 
-  		 echo "Hello ${params.TOGGLE}"
+  		
                 
                 """
             }
