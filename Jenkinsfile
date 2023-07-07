@@ -2,15 +2,6 @@ pipeline {
 
     agent any
 
-   environment{
-        PROJECT = 'impe-prod'
-        PROJECT = 'impe-qa'
-        PROJECT = 'impe-dev'
-        ENVIRONMENT = 'prod'
-        ENVIRONMENT = 'qa'
-        ENVIRONMENT = 'dev'
-    }
-
     stages{
         stage(' RUN TEST') {  
             steps {
