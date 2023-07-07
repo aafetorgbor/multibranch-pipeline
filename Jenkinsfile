@@ -1,9 +1,8 @@
 pipeline {
 
     agent any
-    
-    
-      stages{
+
+    stages{
         stage(' RUN TEST') {  
             steps {
                 sh """
@@ -12,10 +11,14 @@ pipeline {
                 
                 """
             }
-        }
-        
+        }        
         
          stage('BUILD IMAGE') {
+              when {
+                anyOf { 
+			branch 'main'; branch 'qa'; branch 'dev' 
+		}
+            }
             steps {
                 sh """
                 echo " Building Docker Image"
@@ -26,6 +29,11 @@ pipeline {
     
        
          stage(' DEPLOY ') {
+              when {
+                anyOf { 
+			branch 'main'; branch 'qa'; branch 'dev' 
+		}
+            }
             steps {
                 sh """
                 echo " Deploying to Code Engine"
