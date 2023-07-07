@@ -2,6 +2,12 @@ pipeline {
 
     agent any
 
+   environment{
+        PROJECT = 'impe-dev'
+        ENVIRONMENT = 'dev'
+        IMAGE_NAME = 'impe-dev-api'
+    }
+
     stages{
         stage(' RUN TEST') {  
             steps {
