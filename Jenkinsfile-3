@@ -24,6 +24,7 @@ pipeline {
                 sh """
                 echo "Running pytest test"
                 pytest -v
+                printenv
                 
                 """
             }
@@ -43,7 +44,7 @@ pipeline {
                                 "IMAGE_NAME=impe-prod-api"] ){
                         
                         sh """
-                        echo " Deploying to Code Engine PROD"
+                        echo " Building Docker image and publishing to PROD"
                         echo " PROJECT = ${PROJECT}"
                         echo " ENVIRONMENT = ${ENVIRONMENT}"
                         echo " IMAGE_NAME = ${IMAGE_NAME}"
@@ -57,7 +58,7 @@ pipeline {
                                  "IMAGE_NAME=impe-qa-api"]){
                         
                         sh """
-                        echo " Deploying to Code Engine QA"
+                        echo " Building Docker image and publishing to QA"
                         echo " PROJECT = ${PROJECT}"
                         echo " ENVIRONMENT = ${ENVIRONMENT}"
                         echo " IMAGE_NAME = ${IMAGE_NAME}"
@@ -71,7 +72,7 @@ pipeline {
                          "IMAGE_NAME=impe-dev-api"]){
                         
                         sh """
-                        echo " Deploying to Code Engine DEV"
+                        echo " Building Docker image and publishing to DEV"
                         echo " PROJECT = ${PROJECT}"
                         echo " ENVIRONMENT = ${ENVIRONMENT}"
                         echo " IMAGE_NAME = ${IMAGE_NAME}"
