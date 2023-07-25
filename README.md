@@ -2,6 +2,7 @@
 
 Multibranch pipeline
 Just added this line to check if merged conflict will occur
+New line added to this readME.d file
 
 
 
