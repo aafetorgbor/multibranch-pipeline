@@ -36,6 +36,9 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/JavaScript-unittest-jest.git']]])
 
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git']]])
+
+
                 script{
                     
                     if( env.BRANCH_NAME == 'main' &&  env.PROJECT_PROD == 'impe-prod'){
