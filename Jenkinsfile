@@ -35,7 +35,7 @@ pipeline {
            
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/JavaScript-unittest-jest.git']]])
-                dir("impe_config/"){
+                dir("impe_config/${ENVIRONMENT}"){
                     stash includes: "enabled_tools.yaml", name: "enabled_tools"
                 }
 
