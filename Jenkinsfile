@@ -40,7 +40,9 @@ pipeline {
                 }
 
                 checkout([$class: 'GitSCM', branches: [[name: '*/${BRANCH_NAME}']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git']]])
-
+                 dir("src/config"){
+                    unstash "enabled_tools"
+                 }
 
                 script{
                     
