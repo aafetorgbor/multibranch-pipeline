@@ -10,7 +10,7 @@ pipeline {
         PROJECT_PROD       = 'impe-prod'
         PROJECT_QA         = 'impe-qa'
         PROJECT_DEV        = 'impe-dev'
-        //ENVIRONMENT        = 'environment'
+        ENVIRONMENT        = 'environment'
       //  ENVIRONMENT_QA     = 'qa'
        // ENVIRONMENT_DEV    = 'dev'
         IMAGE_NAME         = 'image-name'
