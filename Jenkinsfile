@@ -26,6 +26,8 @@ pipeline {
             steps {
                 sh """
                 echo "Running pytest test"
+                python3 --version
+                pip3 install pytest
                 pytest -v
                 printenv
                 
