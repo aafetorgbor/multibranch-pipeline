@@ -20,9 +20,14 @@ pipeline {
     
       stages{
         stage(' RUN TEST') {  
+            agent{
+                label "docker-agent-python"
+            }
             steps {
                 sh """
                 echo "Running pytest test"
+                python3 --version
+                pip3 install pytest
                 pytest -v
                 printenv
                 
@@ -31,10 +36,19 @@ pipeline {
         }
         
         
-         stage('BUILD IMAGE') {
-           
+         stage('BUILD IMAGE') {           
             steps {
-                
+
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/JavaScript-unittest-jest.git']]])
+                dir("impe_config/DEV/"){
+                    stash includes: "enabled_tools.yaml", name: "enabled_tools"
+                }
+
+                checkout([$class: 'GitSCM', branches: [[name: '*/${BRANCH_NAME}']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git']]])
+                 dir("src/config"){
+                    unstash "enabled_tools"
+                 }
+
                 script{
                     
                     if( env.BRANCH_NAME == 'main' &&  env.PROJECT_PROD == 'impe-prod'){
@@ -150,5 +164,17 @@ pipeline {
             }
         }    
 
+    }
+
+    post{
+        success{
+            
+            slackSend channel: 'dev', color: "#43e058", message: "BUILD ${currentBuild.currentResult} ${JOB_NAME} - ${BUILD_DISPLAY_NAME} Open-url, (<${BUILD_URL}|Open>)", tokenCredentialId: 'slack-to-jenkins-token'
+        }
+        
+        failure{
+            
+            slackSend channel: 'dev', color: "#cc1821", message: "BUILD ${currentBuild.currentResult} ${JOB_NAME} - ${BUILD_DISPLAY_NAME} Open-url, (<${BUILD_URL}|Open>)", tokenCredentialId: 'slack-to-jenkins-token'
+        }
     }   
 }
