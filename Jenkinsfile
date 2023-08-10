@@ -159,5 +159,17 @@ pipeline {
             }
         }    
 
+    }
+
+    post{
+        success{
+            
+            slackSend channel: 'dev', color: "#43e058", message: "BUILD ${currentBuild.currentResult} ${JOB_NAME} - ${BUILD_DISPLAY_NAME} Open-url, (<${BUILD_URL}|Open>)", tokenCredentialId: 'slack-to-jenkins-token'
+        }
+        
+        failure{
+            
+            slackSend channel: 'dev', color: "#cc1821", message: "BUILD ${currentBuild.currentResult} ${JOB_NAME} - ${BUILD_DISPLAY_NAME} Open-url, (<${BUILD_URL}|Open>)", tokenCredentialId: 'slack-to-jenkins-token'
+        }
     }   
 }
