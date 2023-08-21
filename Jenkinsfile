@@ -41,12 +41,12 @@ pipeline {
                  sh 'building image'
                // checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/JavaScript-unittest-jest.git']]])
                // dir("impe_config/DEV/"){
-                    stash includes: "enabled_tools.yaml", name: "enabled_tools"
+               //     stash includes: "enabled_tools.yaml", name: "enabled_tools"
                // }
 
                 //checkout([$class: 'GitSCM', branches: [[name: '*/${BRANCH_NAME}']], extensions: [], userRemoteConfigs: [[credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git']]])
                 // dir("src/config"){
-                    unstash "enabled_tools"
+                 //   unstash "enabled_tools"
                 // }
 
                 script{
@@ -56,16 +56,6 @@ pipeline {
                         withEnv(["PROJECT=impe-prod", 
                                 "ENVIRONMENT=prod ", 
                                 "IMAGE_NAME=impe-prod-api"] ){
-
-                        git branch: 'main', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/JavaScript-unittest-jest.git'
-                        dir("impe_config/DEV/"){
-                            stash includes: "enabled_tools.yaml", name: "enabled_tools"
-                         }
-
-                         git branch: 'dev', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git'
-                         dir("src/config"){
-                            unstash "enabled_tools"
-                            } 
 
                         sh """
                         echo " Building Docker image and publishing to PROD"
@@ -94,6 +84,17 @@ pipeline {
                          withEnv(["PROJECT=impe-dev",
                          "ENVIRONMENT=dev ", 
                          "IMAGE_NAME=impe-dev-api"]){
+
+                        git branch: 'main', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/JavaScript-unittest-jest.git'
+                        dir("impe_config/DEV/"){
+                            stash includes: "enabled_tools.yaml", name: "enabled_tools"
+                         }
+
+                         git branch: 'dev', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git'
+                         dir("src/config"){
+                            unstash "enabled_tools"
+                            } 
+
                         
                         sh """
                         echo " Building Docker image and publishing to DEV"
