@@ -20,9 +20,9 @@ pipeline {
     
       stages{
         stage(' RUN TEST') {  
-            //agent{
-                //label "docker-agent-python"
-            //}
+            agent{
+                label "docker-agent-python"
+            }
             steps {
                 sh """
                 echo "Running pytest test"
