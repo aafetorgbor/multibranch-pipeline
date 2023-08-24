@@ -100,8 +100,8 @@ pipeline {
         }
     
        
-         stage(' DEPLOY ') {
-            steps {
+        stage(' DEPLOY ') {
+            steps{
                 
                 script{
                     
@@ -158,7 +158,11 @@ pipeline {
                 
             }
         }    
-
+        stage('SLACK-NOTIFICATION'){
+            step{
+                echo 'Sending Slack Notification'
+            }
+        }
     }
 
     post{
