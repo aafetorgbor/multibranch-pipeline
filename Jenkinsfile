@@ -65,7 +65,7 @@ pipeline {
                             stash includes: "enabled_tools.yaml", name: "enabled_tools"
                          }
 
-                         git branch: 'dev', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git'
+                         git branch: 'main', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git'
                          dir("src/config"){
                             unstash "enabled_tools"
                             } 
@@ -90,7 +90,7 @@ pipeline {
                             stash includes: "enabled_tools.yaml", name: "enabled_tools"
                          }
 
-                         git branch: 'dev', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git'
+                         git branch: 'qa', credentialsId: 'multibranch-github-PAT', url: 'https://github.com/aafetorgbor/multibranch-pipeline.git'
                          dir("src/config"){
                             unstash "enabled_tools"
                             } 
