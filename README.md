@@ -6,6 +6,7 @@ Added another line
 Added Feature branch
 Another line added
 Added pr line
+pr auto-merge testing
 
 
 
