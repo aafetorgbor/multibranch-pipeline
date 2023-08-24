@@ -159,7 +159,7 @@ pipeline {
             }
         }    
         stage('SLACK-NOTIFICATION'){
-            step{
+            steps{
                 echo 'Sending Slack Notification'
             }
         }
